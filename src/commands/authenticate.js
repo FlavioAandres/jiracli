@@ -19,9 +19,13 @@ class AuthenticateCommand extends Command {
   }
 }
 
-AuthenticateCommand.description = `Describe the command here
+AuthenticateCommand.description = `
+To using the JIRA REST API You need to create your own API Token based on your user. 
+More info: https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/
 ...
-Extra documentation goes here
+Once you have your API Key, use the command as the following: 
+
+jiracli authenticate -u youremail@corporate.io -p yourapikeysecret123 -s yoursite.atlassian.net
 `
 
 AuthenticateCommand.flags = {
