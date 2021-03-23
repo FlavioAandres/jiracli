@@ -1,0 +1,53 @@
+{
+  "name": "jiracli",
+  "description": "Jira CLI made to interact with jira",
+  "version": "0.0.0",
+  "author": "@FlavioAandres",
+  "bin": {
+    "jiracli": "./bin/run"
+  },
+  "bugs": "https://github.com/https://github.com/FlavioAandres/jiracli/jiracli/issues",
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.0",
+    "globby": "^10.0.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/https://github.com/FlavioAandres/jiracli/jiracli",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "bin": "jiracli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "https://github.com/FlavioAandres/jiracli/jiracli",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "dependencies": {
+    "@oclif/command": "^1.8.0",
+    "@oclif/config": "^1.17.0",
+    "@oclif/plugin-help": "^3.2.2",
+    "cli-table3": "^0.6.0",
+    "enquirer": "^2.3.6",
+    "jira": "^0.9.2",
+    "keytar": "^7.4.0",
+    "terminal-link": "^2.1.1"
+  }
+}
