@@ -36,7 +36,7 @@ USAGE
 
 ## `jiracli authenticate`
 
-Describe the command here
+To using the JIRA REST API You need to create your own API Token based on your user. 
 
 ```
 USAGE
@@ -49,8 +49,12 @@ OPTIONS
   -u, --user=user          (required) Jira Username or email
 
 DESCRIPTION
+  To using the JIRA REST API You need to create your own API Token based on your user. 
+  More info: https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/
   ...
-  Extra documentation goes here
+  Once you have your API Key, use the command as the following: 
+
+  jiracli authenticate -u youremail@corporate.io -p yourapikeysecret123 -s yoursite.atlassian.net
 ```
 
 _See code: [src/commands/authenticate.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/authenticate.js)_
