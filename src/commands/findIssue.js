@@ -3,11 +3,20 @@ const JiraRepo = require('../repository/jira')
 const Table = require('cli-table3');
 const { Input, Select } = require('enquirer')
 const urlHelper = require('../helpers/url')
+
+// hola si sonido uno dos tres, 4, 0 
+
+
 class FindIssueCommand extends Command {
   InputObject = (message = "", initial = "abc") => new Input({
     message,
     initial,
   });
+  parseBreakLine = (text, limit, iteration = 1)=> {
+    if(text.length < iteration * limit) return text
+    const breakLine = text.substring(0,limit*iteration ) + "\n" + text.substring(limit*iteration, text.lenght) 
+    return this.parseBreakLine(breakLine, limit, iteration + 1)
+  }
   async run() {
     const { flags } = this.parse(FindIssueCommand)
     const JiraInstance = new JiraRepo()
@@ -23,7 +32,7 @@ class FindIssueCommand extends Command {
     })
 
     const parsedIssues = JQLResult.issues.map(item=>[
-      item.fields.summary.slice(0,40), 
+      this.parseBreakLine(item.fields.summary, 40), 
       item.fields.status.name,
       urlHelper.generateIssueUrl(item.key)
     ])
