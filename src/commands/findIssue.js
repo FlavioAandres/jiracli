@@ -26,7 +26,6 @@ class FindIssueCommand extends Command {
       ${flags.owner ? 'AND reporter in (currentUser())' : ''}
       order by created DESC
     `
-    console.log(JQL)
     const JQLResult = await JiraInstance.searchIssue(JQL)
     
     const issuesTable = new Table({
