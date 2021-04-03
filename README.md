@@ -15,33 +15,33 @@ Jira CLI made to interact with jira
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g jiracli
-$ jiracli COMMAND
+$ npm install -g jiradev
+$ jiradev COMMAND
 running command...
-$ jiracli (-v|--version|version)
-jiracli/0.0.0 darwin-x64 node-v15.11.0
-$ jiracli --help [COMMAND]
+$ jiradev (-v|--version|version)
+jiradev/0.0.0 darwin-x64 node-v15.11.0
+$ jiradev --help [COMMAND]
 USAGE
-  $ jiracli COMMAND
+  $ jiradev COMMAND
 ...
 ```
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`jiracli authenticate`](#jiracli-authenticate)
-* [`jiracli findIssue`](#jiracli-findissue)
-* [`jiracli findProject`](#jiracli-findproject)
-* [`jiracli hello`](#jiracli-hello)
-* [`jiracli help [COMMAND]`](#jiracli-help-command)
-* [`jiracli issue-transition`](#jiracli-issue-transition)
+* [`jiradev authenticate`](#jiradev-authenticate)
+* [`jiradev findIssue`](#jiradev-findissue)
+* [`jiradev findProject`](#jiradev-findproject)
+* [`jiradev hello`](#jiradev-hello)
+* [`jiradev help [COMMAND]`](#jiradev-help-command)
+* [`jiradev issue-transition`](#jiradev-issue-transition)
 
-## `jiracli authenticate`
+## `jiradev authenticate`
 
 To using the JIRA REST API You need to create your own API Token based on your user. 
 
 ```
 USAGE
-  $ jiracli authenticate
+  $ jiradev authenticate
 
 OPTIONS
   -n, --name=name          name user
@@ -60,13 +60,13 @@ DESCRIPTION
 
 _See code: [src/commands/authenticate.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/authenticate.js)_
 
-## `jiracli findIssue`
+## `jiradev findIssue`
 
 Describe the command here
 
 ```
 USAGE
-  $ jiracli findIssue
+  $ jiradev findIssue
 
 OPTIONS
   -n, --name=name  name to print.
@@ -79,13 +79,13 @@ DESCRIPTION
 
 _See code: [src/commands/findIssue.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/findIssue.js)_
 
-## `jiracli findProject`
+## `jiradev findProject`
 
 Describe the command here
 
 ```
 USAGE
-  $ jiracli findProject
+  $ jiradev findProject
 
 OPTIONS
   -k, --key=key    Project Key. Ex: CEBAPP
@@ -98,13 +98,13 @@ DESCRIPTION
 
 _See code: [src/commands/findProject.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/findProject.js)_
 
-## `jiracli hello`
+## `jiradev hello`
 
 Describe the command here
 
 ```
 USAGE
-  $ jiracli hello
+  $ jiradev hello
 
 OPTIONS
   -n, --name=name  name to print
@@ -116,13 +116,13 @@ DESCRIPTION
 
 _See code: [src/commands/hello.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/hello.js)_
 
-## `jiracli help [COMMAND]`
+## `jiradev help [COMMAND]`
 
-display help for jiracli
+display help for jiradev
 
 ```
 USAGE
-  $ jiracli help [COMMAND]
+  $ jiradev help [COMMAND]
 
 ARGUMENTS
   COMMAND  command to show help for
@@ -133,13 +133,13 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
 
-## `jiracli issue-transition`
+## `jiradev issue-transition`
 
 Describe the command here
 
 ```
 USAGE
-  $ jiracli issue-transition
+  $ jiradev issue-transition
 
 OPTIONS
   -i, --issueID=issueID  name to print

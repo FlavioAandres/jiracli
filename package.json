@@ -1,10 +1,10 @@
 {
-  "name": "jiracli",
+  "name": "jiradev",
   "description": "Jira CLI made to interact with jira",
   "version": "0.0.0",
   "author": "@FlavioAandres",
   "bin": {
-    "jiracli": "./bin/run"
+    "jiradev": "./bin/run"
   },
   "bugs": "https://github.com/https://github.com/FlavioAandres/jiracli/jiracli/issues",
   "devDependencies": {
@@ -28,7 +28,7 @@
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
-    "bin": "jiracli",
+    "bin": "jiradev",
     "plugins": [
       "@oclif/plugin-help"
     ]
