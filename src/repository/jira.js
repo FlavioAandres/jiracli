@@ -12,7 +12,6 @@ class JiraRepository {
 
         const LocalSettings = new Configs()
         const AuthSettings = LocalSettings.getConfig('auth')
-        console.log(AuthSettings)
         let password = await keytar.getPassword('JiraCredentials', AuthSettings.user)
         if (!password) throw new Error('No Credentials Found');
 
