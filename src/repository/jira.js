@@ -51,6 +51,32 @@ class JiraRepository {
             })
         })
     }
+
+    getAvailableTransitions = async (issueId) =>{
+        await this.buildInstance()
+        return new Promise((resolve, reject)=>{
+            if(!this.globalInstance)
+                return rej('Unauthenticated user, please see authenticate command.')
+            this.globalInstance.listTransitions(issueId, (err, res)=>{
+                if(err) return reject(err)
+                return resolve(res)
+            })
+        })
+    }
+
+    transitionIssue = async (issueId, transitionId) =>{
+        await this.buildInstance()
+        return new Promise((response, rej)=>{
+            if(!this.globalInstance)
+                return rej('Unauthenticated user, please see authenticate command.')
+            this.globalInstance.transitionIssue(issueId, {
+                transition: { id: transitionId }
+            }, (err,res)=>{
+                if(err) return rej(err); 
+                return response(res)
+            })
+        })
+    }
 }
 
 module.exports = JiraRepository

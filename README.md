@@ -33,6 +33,7 @@ USAGE
 * [`jiracli findProject`](#jiracli-findproject)
 * [`jiracli hello`](#jiracli-hello)
 * [`jiracli help [COMMAND]`](#jiracli-help-command)
+* [`jiracli issue-transition`](#jiracli-issue-transition)
 
 ## `jiracli authenticate`
 
@@ -68,7 +69,8 @@ USAGE
   $ jiracli findIssue
 
 OPTIONS
-  -n, --name=name  name to print
+  -n, --name=name  name to print.
+  -o, --owner      Look for the issues reported by me.
 
 DESCRIPTION
   ...
@@ -130,4 +132,23 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.2/src/commands/help.ts)_
+
+## `jiracli issue-transition`
+
+Describe the command here
+
+```
+USAGE
+  $ jiracli issue-transition
+
+OPTIONS
+  -i, --issueID=issueID  name to print
+
+DESCRIPTION
+  Describe the command here
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/issue-transition.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/issue-transition.js)_
 <!-- commandsstop -->
