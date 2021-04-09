@@ -6,7 +6,7 @@
   "bin": {
     "jiradev": "./bin/run"
   },
-  "bugs": "https://github.com/https://github.com/FlavioAandres/jiracli/jiracli/issues",
+  "bugs": "https://github.com/FlavioAandres/jiracli/issues",
   "devDependencies": {
     "@oclif/dev-cli": "^1.26.0",
     "globby": "^10.0.2"
@@ -20,7 +20,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/https://github.com/FlavioAandres/jiracli/jiracli",
+  "homepage": "https://github.com/FlavioAandres/jiracli/jiracli",
   "keywords": [
     "oclif"
   ],
@@ -33,7 +33,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "https://github.com/FlavioAandres/jiracli/jiracli",
+  "repository": "https://github.com/FlavioAandres/jiracli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "oclif-dev manifest && oclif-dev readme",
