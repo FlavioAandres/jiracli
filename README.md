@@ -29,6 +29,7 @@ USAGE
 # Commands
 <!-- commands -->
 * [`jiradev authenticate`](#jiradev-authenticate)
+* [`jiradev create-issue`](#jiradev-create-issue)
 * [`jiradev findIssue`](#jiradev-findissue)
 * [`jiradev findProject`](#jiradev-findproject)
 * [`jiradev hello`](#jiradev-hello)
@@ -58,7 +59,25 @@ DESCRIPTION
   jiracli authenticate -u youremail@corporate.io -p yourapikeysecret123 -s yoursite.atlassian.net
 ```
 
-_See code: [src/commands/authenticate.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/authenticate.js)_
+_See code: [src/commands/authenticate.js](https://github.com/FlavioAandres/jiracli/blob/v0.0.0/src/commands/authenticate.js)_
+
+## `jiradev create-issue`
+
+Describe the command here
+
+```
+USAGE
+  $ jiradev create-issue
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/create-issue.js](https://github.com/FlavioAandres/jiracli/blob/v0.0.0/src/commands/create-issue.js)_
 
 ## `jiradev findIssue`
 
@@ -77,7 +96,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/findIssue.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/findIssue.js)_
+_See code: [src/commands/findIssue.js](https://github.com/FlavioAandres/jiracli/blob/v0.0.0/src/commands/findIssue.js)_
 
 ## `jiradev findProject`
 
@@ -96,7 +115,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/findProject.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/findProject.js)_
+_See code: [src/commands/findProject.js](https://github.com/FlavioAandres/jiracli/blob/v0.0.0/src/commands/findProject.js)_
 
 ## `jiradev hello`
 
@@ -114,7 +133,7 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/hello.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/hello.js)_
+_See code: [src/commands/hello.js](https://github.com/FlavioAandres/jiracli/blob/v0.0.0/src/commands/hello.js)_
 
 ## `jiradev help [COMMAND]`
 
@@ -150,5 +169,5 @@ DESCRIPTION
   Extra documentation goes here
 ```
 
-_See code: [src/commands/issue-transition.js](https://github.com/FlavioAandres/jiracli/jiracli/blob/v0.0.0/src/commands/issue-transition.js)_
+_See code: [src/commands/issue-transition.js](https://github.com/FlavioAandres/jiracli/blob/v0.0.0/src/commands/issue-transition.js)_
 <!-- commandsstop -->
