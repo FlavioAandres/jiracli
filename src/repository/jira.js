@@ -1,14 +1,13 @@
 const JiraAPI = require('jira').JiraApi
 const Configs = require('../helpers/config')
 const keytar = require('keytar')
-
 class JiraRepository {
-    constructor(){
+    constructor() {
         this.globalInstance = null
     }
 
     buildInstance = async () => {
-        if(this.globalInstance) return this.globalInstance; 
+        if (this.globalInstance) return this.globalInstance;
 
         const LocalSettings = new Configs()
         const AuthSettings = LocalSettings.getConfig('auth')
@@ -28,23 +27,23 @@ class JiraRepository {
     }
 
     listProjects = async (...args) => {
-        await  this.buildInstance()
+        await this.buildInstance()
         return new Promise((resolve, rej) => {
-            if(!this.globalInstance) 
+            if (!this.globalInstance)
                 return rej('Unauthenticated user, please see authenticate command.')
-            
+
             this.globalInstance.listProjects((err, res) => {
                 if (err) return rej(err)
                 return resolve(res)
             })
         })
     }
-    searchIssue = async (query, fields) =>{
-        await  this.buildInstance()
+    searchIssue = async (query, fields) => {
+        await this.buildInstance()
         return new Promise((resolve, rej) => {
-            if(!this.globalInstance) 
+            if (!this.globalInstance)
                 return rej('Unauthenticated user, please see authenticate command.')
-            
+
             this.globalInstance.searchJira(query, null, (err, res) => {
                 if (err) return rej(err)
                 return resolve(res)
@@ -52,28 +51,61 @@ class JiraRepository {
         })
     }
 
-    getAvailableTransitions = async (issueId) =>{
+    getAvailableTransitions = async (issueId) => {
         await this.buildInstance()
-        return new Promise((resolve, reject)=>{
-            if(!this.globalInstance)
+        return new Promise((resolve, reject) => {
+            if (!this.globalInstance)
                 return rej('Unauthenticated user, please see authenticate command.')
-            this.globalInstance.listTransitions(issueId, (err, res)=>{
-                if(err) return reject(err)
+            this.globalInstance.listTransitions(issueId, (err, res) => {
+                if (err) return reject(err)
                 return resolve(res)
             })
         })
     }
 
-    transitionIssue = async (issueId, transitionId) =>{
+    transitionIssue = async (issueId, transitionId) => {
         await this.buildInstance()
-        return new Promise((response, rej)=>{
-            if(!this.globalInstance)
+        return new Promise((response, rej) => {
+            if (!this.globalInstance)
                 return rej('Unauthenticated user, please see authenticate command.')
             this.globalInstance.transitionIssue(issueId, {
                 transition: { id: transitionId }
-            }, (err,res)=>{
-                if(err) return rej(err); 
+            }, (err, res) => {
+                if (err) return rej(err);
                 return response(res)
+            })
+        })
+    }
+
+    getAvailableMetadataForProjects = async (projectIds = [], projectKeys = []) => {
+        await this.buildInstance()
+        return new Promise((resolve, reject) => {
+            let queryParams = projectIds.length 
+                ? '?projectIds[]=' + projectIds.join(',')
+                : ''
+            queryParams += projectKeys.length 
+                ? '&projectKeys='+projectKeys.join(',')
+                : ''
+            this.globalInstance.doRequest({
+                rejectUnauthorized: this.globalInstance.strictSSL,
+                uri: this.globalInstance.makeUri('/issue/createmeta?projectIds' + queryParams, null, 2), //version 2 JiraAPI
+                method: 'GET',
+                json: true
+            }, (error, response, body) => {
+                if (error) {
+                    return reject(error);
+                }
+    
+                if (response.statusCode === 404) {
+                    return reject('Invalid version.');
+                }
+    
+                if (response.statusCode !== 200) {
+                    reject(response.statusCode + ': Unable to connect to JIRA during findIssueStatus.');
+                    return;
+                }
+                
+                resolve(body);
             })
         })
     }
