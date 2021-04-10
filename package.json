@@ -1,7 +1,7 @@
 {
   "name": "jiradev",
   "description": "Jira CLI made to interact with jira",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "@FlavioAandres",
   "bin": {
     "jiradev": "./bin/run"
