@@ -1,6 +1,8 @@
 const {Command, flags} = require('@oclif/command')
 const prompt = require('../helpers/prompts')
 const JiraRepo = require('../repository/jira')
+const Table = require('cli-table3');
+const urlHelper = require('../helpers/url')
 
 class CreateIssueCommand extends Command {
   async run() {
@@ -11,11 +13,14 @@ class CreateIssueCommand extends Command {
       prev[current.name] = {id: current.id, key: current.key}; 
       return prev
     }, {})
-
+    
+    let AutocompleteArray = Object.keys(projectsObject) 
+    if(AutocompleteArray.length === 1) AutocompleteArray = AutocompleteArray.concat('','')
+    
     const choosedProjectName = await prompt.autoCompleteObject(
       'Choose Issue', 
       '√ Type the project name for your issue', 
-      Object.keys(projectsObject)
+      AutocompleteArray
     ).run()
 
     const issueTitle = await prompt.InputObject(
@@ -42,8 +47,7 @@ class CreateIssueCommand extends Command {
       Object.keys(issueMetadataObject)
     ).run()
 
-    this.log('Insert file description: ')
-    await new Promise((res)=>setTimeout(res, 1000))
+    await new Promise((res)=>setTimeout(res, 500))
     
     const issueDescription = await prompt.EditorInputObject()
     const newIssueObject = {
@@ -52,11 +56,27 @@ class CreateIssueCommand extends Command {
       }, 
       summary: issueTitle,
       description: issueDescription,
-      issueType: issueMetadataObject[issueTypeChoosed]
+      issuetype: {id: issueMetadataObject[issueTypeChoosed]}
     }
 
     //CreateIssue :rock: 
-    console.log(JSON.stringify(newIssueObject, null, 2))
+    let newIssueResponse = null; 
+    try {
+      newIssueResponse = await JiraInstance.createIssue({fields: newIssueObject})
+    } catch (error) {
+      throw(error.message)
+    }
+
+    const IssueTable = new Table({
+      head: ["Key", "URL"]
+    })
+    
+    IssueTable.push([
+      newIssueResponse.key, 
+      urlHelper.generateIssueUrl(newIssueResponse.key)
+    ]); 
+    
+    this.log(IssueTable.toString())
   }
 }
 

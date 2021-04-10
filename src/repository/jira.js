@@ -77,6 +77,21 @@ class JiraRepository {
         })
     }
 
+    createIssue = async (issueObject) => {
+        await this.buildInstance()
+        return new Promise((resolve, reject) => {
+            this.globalInstance.doRequest({
+                rejectUnauthorized: this.globalInstance.strictSSL,
+                uri: this.globalInstance.makeUri('/issue/', null, 2), //version 2 JiraAPI
+                method: 'POST',
+                body: issueObject,
+                json: true
+            }, (error, response, body)=>{
+                return handleJiraLibResponse(error, response, body, resolve, reject); 
+            })
+        }); 
+    }
+
     getAvailableMetadataForProjects = async (projectIds = [], projectKeys = []) => {
         await this.buildInstance()
         return new Promise((resolve, reject) => {
@@ -92,23 +107,27 @@ class JiraRepository {
                 method: 'GET',
                 json: true
             }, (error, response, body) => {
-                if (error) {
-                    return reject(error);
-                }
-    
-                if (response.statusCode === 404) {
-                    return reject('Invalid version.');
-                }
-    
-                if (response.statusCode !== 200) {
-                    reject(response.statusCode + ': Unable to connect to JIRA during findIssueStatus.');
-                    return;
-                }
-                
-                resolve(body);
+               return handleJiraLibResponse(error, response, body, resolve, reject); 
             })
         })
     }
+}
+
+const handleJiraLibResponse = (error, response, body, resolve, reject)=>{
+    if (error) {
+        return reject(error);
+    }
+
+    if (response.statusCode === 404) {
+        return reject('Invalid version.');
+    }
+
+    if(![201,200].includes(response.statusCode)) {
+        reject(response.statusCode + ': Unable to connect to Jira during issue creation.');
+        return;
+    }
+
+    return resolve(body);
 }
 
 module.exports = JiraRepository
